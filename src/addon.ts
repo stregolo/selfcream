@@ -705,9 +705,10 @@ app.get('/proxy/hls/subtitle.vtt', async (req: any, res: any) => {
 export default app;
 
 if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
-    const port = process.env.PORT || 7000;
-    app.listen(port, () => {
-        console.log(`SelfStream running at http://127.0.0.1:${port}`);
-        console.log(`Manifest: http://127.0.0.1:${port}/manifest.json`);
-    });
+  const port = Number(process.env.PORT || 7000);
+
+  app.listen(port, '0.0.0.0', () => {
+    console.log(`SelfStream running at http://0.0.0.0:${port}`);
+    console.log(`Manifest: http://0.0.0.0:${port}/manifest.json`);
+  });
 }
